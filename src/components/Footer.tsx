@@ -68,10 +68,31 @@ export default function Footer() {
         {/* Navigation columns */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-12" style={{ borderTop: '1px solid rgba(245,240,235,0.08)', paddingTop: '2.5rem' }}>
           {[
-            { heading: 'Services', items: ['Branding', 'Digital', 'Video', 'Events', 'Social'] },
-            { heading: 'Company', items: ['About', 'Careers', 'Process', 'Press'] },
-            { heading: 'Social', items: ['Instagram', 'LinkedIn', 'X / Twitter', 'Behance'] },
-            { heading: 'Contact', items: ['+1 555 987 6543', 'New York, NY', '40.7128° N, 74.0060° W'] },
+            { heading: 'Services', items: [
+              { label: 'Branding', href: '/services' },
+              { label: 'Digital', href: '/services' },
+              { label: 'Video', href: '/services' },
+              { label: 'Events', href: '/services' },
+              { label: 'Social', href: '/services' },
+            ]},
+            { heading: 'Company', items: [
+              { label: 'About', href: '/about' },
+              { label: 'Careers', href: '/careers' },
+              { label: 'Process', href: '/process' },
+              { label: 'Privacy Policy', href: '/privacy-policy' },
+              { label: 'Terms of Service', href: '/terms-of-service' },
+            ]},
+            { heading: 'Social', items: [
+              { label: 'Instagram', href: '#' },
+              { label: 'LinkedIn', href: '#' },
+              { label: 'X / Twitter', href: '#' },
+              { label: 'Behance', href: '#' },
+            ]},
+            { heading: 'Contact', items: [
+              { label: '+91 98765 43210', href: 'tel:+919876543210' },
+              { label: 'Noida, UP, India', href: '#' },
+              { label: 'hello@thebrandpipeline.com', href: 'mailto:hello@thebrandpipeline.com' },
+            ]},
           ].map(col => (
             <div key={col.heading}>
               <h4 style={{
@@ -83,13 +104,13 @@ export default function Footer() {
                 textTransform: 'uppercase',
               }}>{col.heading}</h4>
               {col.items.map(item => (
-                <a key={item} href="#" className="footer-link" style={{
+                <a key={item.label} href={item.href} className="footer-link" style={{
                   fontFamily: fonts.syne,
                   fontSize: '13px',
                   display: 'block',
                   marginBottom: '0.6rem',
                   lineHeight: 1.6,
-                }}>{item}</a>
+                }}>{item.label}</a>
               ))}
             </div>
           ))}

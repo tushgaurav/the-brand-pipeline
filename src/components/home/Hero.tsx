@@ -31,7 +31,7 @@ export default function Hero({ loaded }: HeroProps) {
           className="absolute inset-0 w-full h-full pointer-events-none"
           style={{ objectFit: 'cover', opacity: loaded ? 1 : 0, transition: 'opacity 1.5s ease 0.3s' }}
         >
-          <source src="/video.mp4" type="video/mp4" />
+          <source src="https://public-projects.t3.storage.dev/tbp-hero.mp4" type="video/mp4" />
         </video>
 
         <div className="absolute inset-0 pointer-events-none" style={{ background: `linear-gradient(180deg, ${colors.cream}99 0%, ${colors.cream}80 50%, ${colors.cream}99 100%)` }} />

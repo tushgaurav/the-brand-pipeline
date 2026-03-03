@@ -6,7 +6,8 @@
       "Bash(bun add:*)",
       "Bash(mkdir:*)",
       "Bash(bun run:*)",
-      "Bash(rm:*)"
+      "Bash(rm:*)",
+      "Bash(npx tsc:*)"
     ]
   }
 }
