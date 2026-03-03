@@ -1,4 +1,5 @@
 import { fonts } from '../constants/styles'
+import { nav } from '../constants/nav'
 
 export default function Header() {
   return (
@@ -10,28 +11,15 @@ export default function Header() {
     }}>
       <div className="flex items-center gap-3">
         <img src="/tbp.png" alt="Logo" className="h-8" />
-        <div style={{
-          width: '6px',
-          height: '6px',
-          borderRadius: '50%',
-          background: 'var(--accent)',
-          boxShadow: '0 0 8px var(--accent)',
-        }} />
       </div>
       <nav className="flex items-center gap-8">
-        {['Index', 'Services', 'Manifesto', 'Contact'].map(item => (
-          <a key={item} href="#" className="brutal-link" style={{
-            fontFamily: fonts.spaceMono,
-            fontSize: '10px',
+        {nav.map((item: { label: string; href: string }) => (
+          <a key={item.href} href={item.href} className="brutal-link text-xs" style={{
+            fontFamily: fonts.syne,
             letterSpacing: '0.15em',
             textTransform: 'uppercase',
-          }}>{item}</a>
+          }}>{item.label}</a>
         ))}
-        <div style={{
-          width: '32px',
-          height: '2px',
-          background: 'var(--accent)',
-        }} />
       </nav>
     </header>
   )
