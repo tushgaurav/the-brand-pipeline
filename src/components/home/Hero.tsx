@@ -5,7 +5,7 @@ interface HeroProps {
   loaded: boolean
 }
 
-const tickerItems = ['BRAND IDENTITY', 'DIGITAL DESIGN', 'VIDEO PRODUCTION', 'EVENT ACTIVATION', 'SOCIAL MEDIA', 'PRINT & PACKAGING']
+const tickerItems = ['BRAND IDENTITY', 'DESIGN & DEVELOPMENT', 'VIDEO PRODUCTION', 'EVENT MANAGEMENT', 'SOCIAL MEDIA', 'PRINT & PACKAGING', 'STRATEGY & CONSULTING', 'ADVERTISING']
 
 export default function Hero({ loaded }: HeroProps) {
   const [time, setTime] = useState('')
@@ -23,7 +23,6 @@ export default function Hero({ loaded }: HeroProps) {
   return (
     <>
       <section className="relative pt-24 pb-0 px-0" style={{ borderBottom: `3px solid ${colors.dark}`, minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-        {/* Background video */}
         <video
           autoPlay
           muted
@@ -34,10 +33,9 @@ export default function Hero({ loaded }: HeroProps) {
         >
           <source src="/video.mp4" type="video/mp4" />
         </video>
-        {/* Dark overlay for text readability */}
+
         <div className="absolute inset-0 pointer-events-none" style={{ background: `linear-gradient(180deg, ${colors.cream}99 0%, ${colors.cream}80 50%, ${colors.cream}99 100%)` }} />
 
-        {/* Floating editorial metadata */}
         <div className="absolute top-28 right-8 z-20" style={{
           opacity: loaded ? 1 : 0,
           transition: 'opacity 1s 1.2s',
@@ -154,20 +152,10 @@ export default function Hero({ loaded }: HeroProps) {
               }} />
             </div>
 
-            {/* Vertical accent line */}
-            <div style={{
-              position: 'absolute',
-              right: 'clamp(1rem, 5vw, 4rem)',
-              top: '15%',
-              width: '3px',
-              height: loaded ? '70%' : '0%',
-              background: 'var(--accent)',
-              transition: 'height 1.2s cubic-bezier(0.23,1,0.32,1) 0.8s',
-            }} />
           </div>
 
           {/* Tagline row */}
-          <div className="mt-8 md:mt-12 flex items-start justify-between flex-wrap gap-8 max-w-5xl" style={{
+          <div className="mt-8 md:mt-12 flex items-start justify-between flex-wrap gap-8 max-w-5xl mb-12" style={{
             opacity: loaded ? 1 : 0,
             transform: loaded ? 'translateY(0)' : 'translateY(20px)',
             transition: 'all 0.8s cubic-bezier(0.23,1,0.32,1) 1s',
@@ -223,7 +211,7 @@ export default function Hero({ loaded }: HeroProps) {
         opacity: loaded ? 1 : 0,
         transition: 'opacity 0.6s 1.2s',
       }}>
-        <div className="ticker-track">
+        <div className="ticker-track" style={{ animationDuration: '50s' }}>
           {[...tickerItems, ...tickerItems, ...tickerItems, ...tickerItems].map((item, i) => (
             <span key={i} style={{
               fontFamily: fonts.bebas,
@@ -234,7 +222,6 @@ export default function Hero({ loaded }: HeroProps) {
               letterSpacing: '0.05em',
             }}>
               {item}
-              <span style={{ margin: '0 1.5rem', color: 'rgba(245,240,235,0.15)' }}>◆</span>
             </span>
           ))}
         </div>
