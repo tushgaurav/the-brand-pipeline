@@ -37,7 +37,7 @@ export default function PageHeader({
 
   return (
     <section
-      className="relative pt-24"
+      className="relative pt-[60px]"
       style={{
         borderBottom: `3px solid ${colors.dark}`,
         borderTop: `2px solid var(--accent)`,
