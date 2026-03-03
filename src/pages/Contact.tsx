@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { useInView } from '../hooks/useInView'
 import { fonts, colors } from '../constants/styles'
+import PageHeader from '../components/PageHeader'
 
 export default function Contact() {
-  const topAnim = useInView(0.05)
   const formAnim = useInView(0.08)
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' })
   const [submitted, setSubmitted] = useState(false)
@@ -46,42 +46,27 @@ export default function Contact() {
 
   return (
     <>
-      {/* TOP BAR */}
-      <section className="relative pt-24" style={{ borderBottom: `3px solid ${colors.dark}` }}>
-        <div ref={topAnim.ref} className="flex flex-col md:flex-row">
-          <div className="md:w-1/3 p-6 md:p-8" style={{ borderRight: `3px solid ${colors.dark}` }}>
-            <div style={{ opacity: topAnim.visible ? 1 : 0, transition: 'opacity 0.6s 0.1s' }}>
-              <span style={{
-                fontFamily: fonts.spaceMono, fontSize: '9px', letterSpacing: '0.3em', color: 'var(--accent)',
-                background: colors.dark, padding: '5px 12px', display: 'inline-block', marginBottom: '0.8rem',
-              }}>GET IN TOUCH</span>
-              <h2 style={{ fontFamily: fonts.bebas, fontSize: 'clamp(2.5rem, 6vw, 4rem)', lineHeight: 0.9, color: colors.dark }}>CONTACT</h2>
-              <p className="mt-3" style={{
-                fontFamily: fonts.dmSerif, fontStyle: 'italic', fontSize: '0.95rem', lineHeight: 1.5, color: 'rgba(17,17,17,0.4)', maxWidth: '300px',
-              }}>Every great project starts with a conversation.</p>
+      <PageHeader
+        tag="GET IN TOUCH"
+        title="CONTACT"
+        description="Every great project starts with a conversation."
+      >
+        <div className="w-full grid grid-cols-2 md:grid-cols-4 -m-6 md:-m-8">
+          {[
+            { l: 'EMAIL', v: 'hello@thebrandpipeline.com' },
+            { l: 'PHONE', v: '+91 98765 43210' },
+            { l: 'LOCATION', v: 'Noida, UP, India' },
+            { l: 'RESPONSE', v: '< 24 hours' },
+          ].map((item, i) => (
+            <div key={item.l} className="p-4 md:p-6 flex flex-col justify-center" style={{
+              borderRight: i < 3 ? '1px solid rgba(17,17,17,0.08)' : 'none',
+            }}>
+              <span style={{ fontFamily: fonts.spaceMono, fontSize: '7px', letterSpacing: '0.25em', color: 'var(--accent)' }}>{item.l}</span>
+              <span className="mt-1" style={{ fontFamily: fonts.syne, fontSize: '0.8rem', color: 'rgba(17,17,17,0.6)', lineHeight: 1.4 }}>{item.v}</span>
             </div>
-          </div>
-
-          {/* Quick info */}
-          <div className="md:w-2/3 grid grid-cols-2 md:grid-cols-4" style={{
-            opacity: topAnim.visible ? 1 : 0, transition: 'opacity 0.6s 0.3s',
-          }}>
-            {[
-              { l: 'EMAIL', v: 'hello@thebrandpipeline.com' },
-              { l: 'PHONE', v: '+91 98765 43210' },
-              { l: 'LOCATION', v: 'Noida, UP, India' },
-              { l: 'RESPONSE', v: '< 24 hours' },
-            ].map((item, i) => (
-              <div key={item.l} className="p-4 md:p-6 flex flex-col justify-center" style={{
-                borderRight: i < 3 ? '1px solid rgba(17,17,17,0.08)' : 'none',
-              }}>
-                <span style={{ fontFamily: fonts.spaceMono, fontSize: '7px', letterSpacing: '0.25em', color: 'var(--accent)' }}>{item.l}</span>
-                <span className="mt-1" style={{ fontFamily: fonts.syne, fontSize: '0.8rem', color: 'rgba(17,17,17,0.6)', lineHeight: 1.4 }}>{item.v}</span>
-              </div>
-            ))}
-          </div>
+          ))}
         </div>
-      </section>
+      </PageHeader>
 
       {/* FORM */}
       <section ref={formAnim.ref} style={{ borderBottom: `3px solid ${colors.dark}` }}>

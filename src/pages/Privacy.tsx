@@ -1,5 +1,6 @@
 import { useInView } from '../hooks/useInView'
 import { fonts, colors } from '../constants/styles'
+import PageHeader from '../components/PageHeader'
 
 const sections = [
   {
@@ -52,34 +53,14 @@ const sections = [
 ]
 
 export default function Privacy() {
-  const topAnim = useInView(0.05)
-
   return (
     <>
-      {/* TOP BAR */}
-      <section className="relative pt-24" style={{ borderBottom: `3px solid ${colors.dark}` }}>
-        <div ref={topAnim.ref} className="flex flex-col md:flex-row">
-          <div className="md:w-1/3 p-6 md:p-8" style={{ borderRight: `3px solid ${colors.dark}` }}>
-            <div style={{ opacity: topAnim.visible ? 1 : 0, transition: 'opacity 0.6s 0.1s' }}>
-              <span style={{
-                fontFamily: fonts.spaceMono, fontSize: '9px', letterSpacing: '0.3em', color: 'var(--accent)',
-                background: colors.dark, padding: '5px 12px', display: 'inline-block', marginBottom: '0.8rem',
-              }}>LEGAL</span>
-              <h2 style={{ fontFamily: fonts.bebas, fontSize: 'clamp(2rem, 5vw, 3.5rem)', lineHeight: 0.9, color: colors.dark }}>PRIVACY POLICY</h2>
-            </div>
-          </div>
-          <div className="md:w-2/3 p-6 md:p-8 flex items-center" style={{
-            opacity: topAnim.visible ? 1 : 0, transition: 'opacity 0.6s 0.3s',
-          }}>
-            <p style={{ fontFamily: fonts.dmSerif, fontStyle: 'italic', fontSize: '0.95rem', color: 'rgba(17,17,17,0.4)', maxWidth: '500px' }}>
-              How we collect, use, and protect your personal information.
-            </p>
-            <span className="hidden md:block ml-auto" style={{
-              fontFamily: fonts.spaceMono, fontSize: '8px', letterSpacing: '0.15em', color: 'rgba(17,17,17,0.2)',
-            }}>LAST UPDATED: MARCH 2026</span>
-          </div>
-        </div>
-      </section>
+      <PageHeader
+        tag="LEGAL"
+        title="PRIVACY POLICY"
+        description="How we collect, use, and protect your personal information."
+        meta="LAST UPDATED: MARCH 2026"
+      />
 
       {/* CONTENT */}
       <section style={{ borderBottom: `3px solid ${colors.dark}` }}>

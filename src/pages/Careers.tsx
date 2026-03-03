@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useInView } from '../hooks/useInView'
 import { fonts, colors, diagonalStripes } from '../constants/styles'
+import PageHeader from '../components/PageHeader'
 
 const jobs = [
   {
@@ -138,40 +139,16 @@ function JobCard({ job, index }: { job: typeof jobs[0]; index: number }) {
 }
 
 export default function Careers() {
-  const topAnim = useInView(0.05)
   const perksAnim = useInView(0.1)
 
   return (
     <>
-      {/* TOP BAR */}
-      <section className="relative pt-24" style={{ borderBottom: `3px solid ${colors.dark}` }}>
-        <div ref={topAnim.ref} className="flex flex-col md:flex-row">
-          <div className="md:w-1/3 p-6 md:p-8" style={{ borderRight: `3px solid ${colors.dark}` }}>
-            <div style={{ opacity: topAnim.visible ? 1 : 0, transition: 'opacity 0.6s 0.1s' }}>
-              <span style={{
-                fontFamily: fonts.spaceMono, fontSize: '9px', letterSpacing: '0.3em', color: 'var(--accent)',
-                background: colors.dark, padding: '5px 12px', display: 'inline-block', marginBottom: '0.8rem',
-              }}>JOIN THE TEAM</span>
-              <h2 style={{ fontFamily: fonts.bebas, fontSize: 'clamp(2.5rem, 6vw, 4rem)', lineHeight: 0.9, color: colors.dark }}>CAREERS</h2>
-            </div>
-          </div>
-          <div className="md:w-2/3 p-6 md:p-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4" style={{
-            opacity: topAnim.visible ? 1 : 0, transition: 'opacity 0.6s 0.3s',
-          }}>
-            <p style={{ fontFamily: fonts.dmSerif, fontStyle: 'italic', fontSize: '0.95rem', color: 'rgba(17,17,17,0.4)', maxWidth: '400px' }}>
-              We're always looking for exceptional people who care deeply about craft.
-            </p>
-            <div className="flex gap-6">
-              {[{ n: `${jobs.length}`, l: 'OPEN' }, { n: '100%', l: 'REMOTE' }].map(s => (
-                <div key={s.l} className="text-center">
-                  <div style={{ fontFamily: fonts.bebas, fontSize: '1.8rem', lineHeight: 1, color: colors.dark }}>{s.n}</div>
-                  <div style={{ fontFamily: fonts.spaceMono, fontSize: '7px', letterSpacing: '0.2em', color: 'var(--accent)' }}>{s.l}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      <PageHeader
+        tag="JOIN THE TEAM"
+        title="CAREERS"
+        description="We're always looking for exceptional people who care deeply about craft."
+        stats={[{ n: `${jobs.length}`, l: 'OPEN' }, { n: '100%', l: 'REMOTE' }]}
+      />
 
       {/* DIVIDER */}
       <div className="w-full py-6" style={{ background: diagonalStripes, borderBottom: `3px solid ${colors.dark}` }}>

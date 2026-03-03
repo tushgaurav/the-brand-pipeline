@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useInView } from '../hooks/useInView'
 import { fonts, colors } from '../constants/styles'
+import PageHeader from '../components/PageHeader'
 
 const services = [
   {
@@ -167,74 +168,21 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
 }
 
 export default function Services() {
-  const topAnim = useInView(0.05)
   const ctaAnim = useInView(0.15)
 
   return (
     <>
-      {/* COMPACT HEADER — not a massive hero */}
-      <section className="relative pt-24 pb-0" style={{ borderBottom: `3px solid ${colors.dark}` }}>
-        <div className="flex flex-col md:flex-row">
-          {/* Left: label */}
-          <div className="md:w-1/4 p-6 md:p-8 flex items-end" style={{
-            borderRight: `3px solid ${colors.dark}`,
-            borderBottom: `3px solid ${colors.dark}`,
-          }}>
-            <div ref={topAnim.ref} style={{
-              opacity: topAnim.visible ? 1 : 0,
-              transition: 'opacity 0.6s 0.1s',
-            }}>
-              <span style={{
-                fontFamily: fonts.spaceMono,
-                fontSize: '9px',
-                letterSpacing: '0.3em',
-                color: 'var(--accent)',
-                background: colors.dark,
-                padding: '5px 12px',
-                display: 'inline-block',
-                marginBottom: '0.8rem',
-              }}>WHAT WE DO</span>
-              <h2 style={{
-                fontFamily: fonts.bebas,
-                fontSize: 'clamp(2.5rem, 6vw, 4rem)',
-                lineHeight: 0.9,
-                color: colors.dark,
-              }}>SERVICES</h2>
-            </div>
-          </div>
+      <PageHeader
+        tag="WHAT WE DO"
+        title="SERVICES"
+        description="Full-spectrum creative studio. From the first spark of strategy to the final pixel — every discipline, one roof, one system."
+        stats={[{ n: '10', l: 'DISCIPLINES' }, { n: '247+', l: 'PROJECTS' }]}
+        leftWidth="md:w-1/4"
+        rightWidth="md:w-3/4"
+      />
 
-          {/* Right: description + stats */}
-          <div className="md:w-3/4 p-6 md:p-8" style={{ borderBottom: `3px solid ${colors.dark}` }}>
-            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-              <p style={{
-                fontFamily: fonts.dmSerif,
-                fontStyle: 'italic',
-                fontSize: 'clamp(1rem, 1.8vw, 1.3rem)',
-                lineHeight: 1.6,
-                color: 'rgba(17,17,17,0.45)',
-                maxWidth: '450px',
-                opacity: topAnim.visible ? 1 : 0,
-                transform: topAnim.visible ? 'translateY(0)' : 'translateY(20px)',
-                transition: 'all 0.7s cubic-bezier(0.23,1,0.32,1) 0.2s',
-              }}>
-                Full-spectrum creative studio. From the first spark of strategy to the final pixel — every discipline, one roof, one system.
-              </p>
-              <div className="flex gap-8" style={{
-                opacity: topAnim.visible ? 1 : 0,
-                transition: 'opacity 0.6s 0.4s',
-              }}>
-                {[{ n: '10', l: 'DISCIPLINES' }, { n: '247+', l: 'PROJECTS' }].map(s => (
-                  <div key={s.l} className="text-center">
-                    <div style={{ fontFamily: fonts.bebas, fontSize: '2rem', lineHeight: 1, color: colors.dark }}>{s.n}</div>
-                    <div style={{ fontFamily: fonts.spaceMono, fontSize: '8px', letterSpacing: '0.2em', color: 'var(--accent)' }}>{s.l}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Service list */}
+      {/* Service list */}
+      <section style={{ borderBottom: `3px solid ${colors.dark}` }}>
         <div>
           {services.map((service, i) => (
             <ServiceCard key={service.id} service={service} index={i} />

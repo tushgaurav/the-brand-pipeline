@@ -1,5 +1,6 @@
 import { useInView } from '../hooks/useInView'
 import { fonts, colors, diagonalStripes } from '../constants/styles'
+import PageHeader from '../components/PageHeader'
 
 const team = [
   {
@@ -42,70 +43,20 @@ const team = [
 ]
 
 export default function About() {
-  const introAnim = useInView(0.05)
   const storyAnim = useInView(0.1)
   const teamAnim = useInView(0.05)
   const valuesAnim = useInView(0.1)
 
   return (
     <>
-      {/* INTRO BAR — compact, not massive */}
-      <section className="relative pt-24" style={{ borderBottom: `3px solid ${colors.dark}` }}>
-        <div className="flex flex-col md:flex-row">
-          <div className="md:w-2/5 p-6 md:p-10" style={{ borderRight: `3px solid ${colors.dark}` }}>
-            <div ref={introAnim.ref} style={{
-              opacity: introAnim.visible ? 1 : 0,
-              transition: 'opacity 0.6s 0.1s',
-            }}>
-              <span style={{
-                fontFamily: fonts.spaceMono,
-                fontSize: '9px',
-                letterSpacing: '0.3em',
-                color: 'var(--accent)',
-                background: colors.dark,
-                padding: '5px 12px',
-                display: 'inline-block',
-                marginBottom: '1rem',
-              }}>WHO WE ARE</span>
-              <h2 style={{
-                fontFamily: fonts.bebas,
-                fontSize: 'clamp(2.5rem, 6vw, 4rem)',
-                lineHeight: 0.9,
-                color: colors.dark,
-              }}>ABOUT US</h2>
-              <p className="mt-4" style={{
-                fontFamily: fonts.dmSerif,
-                fontStyle: 'italic',
-                fontSize: '1rem',
-                lineHeight: 1.6,
-                color: 'rgba(17,17,17,0.4)',
-                maxWidth: '360px',
-              }}>
-                A collective of designers, developers, strategists, and storytellers who build brands like systems — not surfaces.
-              </p>
-            </div>
-          </div>
-
-          {/* Stats */}
-          <div className="md:w-3/5 grid grid-cols-3 divide-x" style={{
-            borderColor: 'rgba(17,17,17,0.1)',
-          }}>
-            {[
-              { n: '247+', l: 'PROJECTS' },
-              { n: '58', l: 'BRANDS' },
-              { n: 'EST. 2020', l: 'SINCE' },
-            ].map((s) => (
-              <div key={s.l} className="p-6 md:p-10 flex flex-col items-center justify-center text-center" style={{
-                opacity: introAnim.visible ? 1 : 0,
-                transition: 'opacity 0.6s 0.3s',
-              }}>
-                <div style={{ fontFamily: fonts.bebas, fontSize: 'clamp(1.8rem, 4vw, 3rem)', lineHeight: 1, color: colors.dark }}>{s.n}</div>
-                <div style={{ fontFamily: fonts.spaceMono, fontSize: '8px', letterSpacing: '0.25em', color: 'var(--accent)', marginTop: '0.3rem' }}>{s.l}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <PageHeader
+        tag="WHO WE ARE"
+        title="ABOUT US"
+        description="A collective of designers, developers, strategists, and storytellers who build brands like systems — not surfaces."
+        stats={[{ n: '247+', l: 'PROJECTS' }, { n: '58', l: 'BRANDS' }, { n: 'EST. 2020', l: 'SINCE' }]}
+        leftWidth="md:w-2/5"
+        rightWidth="md:w-3/5"
+      />
 
       {/* OUR STORY */}
       <section ref={storyAnim.ref} style={{ borderBottom: `3px solid ${colors.dark}` }}>
