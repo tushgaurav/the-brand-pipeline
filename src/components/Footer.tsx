@@ -1,13 +1,13 @@
 import { fonts, colors } from '../constants/styles'
 
-const tickerText = 'THE BRAND PIPELINE — FULL-SPECTRUM CREATIVE — NEW YORK — '
+const tickerText = 'THE BRAND PIPELINE — FULL-SPECTRUM CREATIVE — NOIDA — '
 
 export default function Footer() {
   return (
     <footer className="relative" style={{ background: colors.dark, color: colors.cream }}>
       {/* Top ticker strip */}
       <div style={{ borderBottom: '1px solid rgba(245,240,235,0.08)', overflow: 'hidden', padding: '0.6rem 0' }}>
-        <div className="ticker-track" style={{ animationDuration: '30s' }}>
+        <div className="ticker-track" style={{ animationDuration: '60s' }}>
           {Array.from({ length: 8 }).map((_, i) => (
             <span key={i} style={{
               fontFamily: fonts.spaceMono,
@@ -24,10 +24,9 @@ export default function Footer() {
 
       {/* Main footer content */}
       <div className="px-6 md:px-16 pt-20 pb-12">
-        {/* Top row: logo + big CTA text */}
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-12 mb-20">
           <div>
-            <img src="/tbp.svg" alt="Logo" className="h-16 mb-6" style={{ opacity: 0.8 }} />
+            <img src="/tbp_cream.svg" alt="Logo" className="h-32 mb-6" style={{ opacity: 0.8 }} />
             <p style={{
               fontFamily: fonts.dmSerif,
               fontStyle: 'italic',
@@ -39,12 +38,14 @@ export default function Footer() {
               Building brands that refuse to be ignored since 2020.
             </p>
           </div>
-          <div style={{ textAlign: 'right' }}>
+          {/* HIDDEN FOR NOW */}
+          {/* <div style={{ textAlign: 'right' }}>
             <div style={{
               fontFamily: fonts.bebas,
               fontSize: 'clamp(3rem, 8vw, 6rem)',
               lineHeight: 0.9,
-              color: colors.cream,
+              color: colors.accent,
+              opacity: 0.5,
               letterSpacing: '-0.02em',
             }}>
               LET'S<br />TALK<span style={{ color: 'var(--accent)' }}>.</span>
@@ -61,7 +62,7 @@ export default function Footer() {
             }}>
               hello@tbp.co
             </a>
-          </div>
+          </div> */}
         </div>
 
         {/* Navigation columns */}

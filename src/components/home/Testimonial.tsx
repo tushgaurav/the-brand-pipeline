@@ -18,7 +18,7 @@ export default function Testimonial() {
             fontSize: '9px',
             letterSpacing: '0.3em',
             color: 'var(--accent)',
-          }}>CLIENT TESTIMONIAL</span>
+          }}>WHAT OUR CLIENTS SAY</span>
         </div>
         <blockquote style={{
           fontFamily: fonts.dmSerif,
@@ -30,11 +30,11 @@ export default function Testimonial() {
           "They approached our brand like surgeons — precise, deliberate, and absolutely uncompromising. The result was something we couldn't have imagined."
         </blockquote>
         <div className="mt-8 flex items-center justify-center gap-4">
-          <div style={{ width: '30px', height: '2px', background: 'var(--accent)' }} />
+          <div style={{ width: '10px', height: '2px', background: 'var(--accent)' }} />
           <span style={{ fontFamily: fonts.spaceMono, fontSize: '10px', letterSpacing: '0.2em', color: 'rgba(245,240,235,0.5)' }}>
-            DIRECTOR OF MARKETING, VOLTERA INC.
+            DIRECTOR OF MARKETING, PROKITS DIGITAL.
           </span>
-          <div style={{ width: '30px', height: '2px', background: 'var(--accent)' }} />
+          <div style={{ width: '10px', height: '2px', background: 'var(--accent)' }} />
         </div>
       </div>
     </section>
