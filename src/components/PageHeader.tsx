@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 import { useInView } from '../hooks/useInView'
-import { fonts, colors } from '../constants/styles'
+import { fonts, colors, diagonalStripes } from '../constants/styles'
 
 interface Stat {
   n: string
@@ -33,75 +33,130 @@ export default function PageHeader({
   leftWidth = 'md:w-1/3',
   rightWidth = 'md:w-2/3',
 }: PageHeaderProps) {
-  const anim = useInView(0.05)
+  const { ref, visible } = useInView(0.05)
 
   return (
-    <section className="relative pt-24" style={{ borderBottom: `3px solid ${colors.dark}` }}>
-      <div ref={anim.ref} className="flex flex-col md:flex-row">
-        {/* Left: tag + title */}
-        <div className={`${leftWidth} p-6 md:p-8`} style={{ borderRight: `3px solid ${colors.dark}` }}>
-          <div style={{ opacity: anim.visible ? 1 : 0, transition: 'opacity 0.6s 0.1s' }}>
-            <span style={{
-              fontFamily: fonts.spaceMono,
-              fontSize: '9px',
-              letterSpacing: '0.3em',
-              color: 'var(--accent)',
-              background: colors.dark,
-              padding: '5px 12px',
-              display: 'inline-block',
-              marginBottom: '0.8rem',
-            }}>{tag}</span>
+    <section
+      className="relative pt-24"
+      style={{
+        borderBottom: `3px solid ${colors.dark}`,
+        borderTop: `2px solid var(--accent)`,
+      }}
+    >
+      <div ref={ref} className="flex flex-col md:flex-row">
+
+        {/* ── Left: tag + title ── */}
+        <div
+          className={`${leftWidth} p-6 md:p-10 relative overflow-hidden`}
+          style={{
+            borderRight: `3px solid ${colors.dark}`,
+            background: diagonalStripes,
+          }}
+        >
+          <div style={{
+            opacity: visible ? 1 : 0,
+            transform: visible ? 'translateY(0)' : 'translateY(24px)',
+            transition: 'opacity 0.65s 0.1s, transform 0.65s 0.1s',
+          }}>
+
+            {/* Tag */}
+            <div className="flex items-center gap-2" style={{ marginBottom: '1.1rem' }}>
+              <span style={{
+                display: 'inline-block',
+                width: '6px',
+                height: '6px',
+                borderRadius: '50%',
+                background: 'var(--accent)',
+                flexShrink: 0,
+              }} />
+              <span style={{
+                fontFamily: fonts.spaceMono,
+                fontSize: '9px',
+                letterSpacing: '0.35em',
+                color: 'rgba(17,17,17,0.45)',
+              }}>{tag}</span>
+            </div>
+
+            {/* Title */}
             <h2 style={{
               fontFamily: fonts.bebas,
-              fontSize: 'clamp(2.5rem, 6vw, 4rem)',
-              lineHeight: 0.9,
+              fontSize: 'clamp(3rem, 7vw, 5rem)',
+              lineHeight: 0.88,
+              letterSpacing: '0.02em',
               color: colors.dark,
             }}>{title}</h2>
-            {/* If description provided and no custom children, show it in left column on pages that put it there */}
+
+            {/* Description shown in left col only when children are also present */}
             {description && children && (
-              <p className="mt-3" style={{
+              <p className="mt-4" style={{
                 fontFamily: fonts.dmSerif,
                 fontStyle: 'italic',
                 fontSize: '0.95rem',
-                lineHeight: 1.5,
-                color: 'rgba(17,17,17,0.4)',
+                lineHeight: 1.65,
+                color: 'rgba(17,17,17,0.42)',
                 maxWidth: '360px',
               }}>{description}</p>
             )}
           </div>
         </div>
 
-        {/* Right side */}
-        <div className={`${rightWidth} p-6 md:p-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4`} style={{
-          opacity: anim.visible ? 1 : 0,
-          transition: 'opacity 0.6s 0.3s',
-        }}>
+        {/* ── Right side ── */}
+        <div
+          className={`${rightWidth} p-6 md:p-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6`}
+          style={{
+            opacity: visible ? 1 : 0,
+            transform: visible ? 'translateY(0)' : 'translateY(24px)',
+            transition: 'opacity 0.65s 0.28s, transform 0.65s 0.28s',
+          }}
+        >
           {children ?? (
             <>
               {description && (
                 <p style={{
                   fontFamily: fonts.dmSerif,
                   fontStyle: 'italic',
-                  fontSize: '0.95rem',
-                  color: 'rgba(17,17,17,0.4)',
-                  maxWidth: '450px',
+                  fontSize: '1rem',
+                  lineHeight: 1.7,
+                  color: 'rgba(17,17,17,0.42)',
+                  maxWidth: '460px',
                 }}>{description}</p>
               )}
+
               {meta && (
                 <span className="hidden md:block ml-auto" style={{
                   fontFamily: fonts.spaceMono,
                   fontSize: '8px',
-                  letterSpacing: '0.15em',
-                  color: 'rgba(17,17,17,0.2)',
+                  letterSpacing: '0.2em',
+                  color: 'rgba(17,17,17,0.22)',
                   flexShrink: 0,
                 }}>{meta}</span>
               )}
+
               {stats && (
-                <div className="flex gap-6" style={{ flexShrink: 0 }}>
-                  {stats.map(s => (
-                    <div key={s.l} className="text-center">
-                      <div style={{ fontFamily: fonts.bebas, fontSize: '1.8rem', lineHeight: 1, color: colors.dark }}>{s.n}</div>
-                      <div style={{ fontFamily: fonts.spaceMono, fontSize: '7px', letterSpacing: '0.2em', color: 'var(--accent)' }}>{s.l}</div>
+                <div className="flex items-center gap-0 ml-auto" style={{ flexShrink: 0 }}>
+                  {stats.map((s, i) => (
+                    <div
+                      key={s.l}
+                      style={{
+                        padding: i === 0 ? '0 2rem 0 0' : '0 2rem',
+                        borderLeft: i > 0 ? `1px solid rgba(17,17,17,0.12)` : 'none',
+                        textAlign: 'center',
+                      }}
+                    >
+                      <div style={{
+                        fontFamily: fonts.bebas,
+                        fontSize: 'clamp(2rem, 4vw, 2.8rem)',
+                        lineHeight: 1,
+                        letterSpacing: '0.02em',
+                        color: colors.dark,
+                      }}>{s.n}</div>
+                      <div style={{
+                        fontFamily: fonts.spaceMono,
+                        fontSize: '7px',
+                        letterSpacing: '0.25em',
+                        color: 'var(--accent)',
+                        marginTop: '5px',
+                      }}>{s.l}</div>
                     </div>
                   ))}
                 </div>
@@ -109,6 +164,7 @@ export default function PageHeader({
             </>
           )}
         </div>
+
       </div>
     </section>
   )
