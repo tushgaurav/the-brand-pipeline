@@ -14,9 +14,9 @@ export default function Header() {
         backdropFilter: 'blur(12px)',
         borderBottom: '2px solid #111',
       }}>
-        <div className="flex items-center gap-3">
+        <a href="/" className="flex items-center gap-3">
           <img src="/tbp.png" alt="Logo" className="h-8" />
-        </div>
+        </a>
 
         {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-8">
