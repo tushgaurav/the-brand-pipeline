@@ -72,56 +72,59 @@ export function Process() {
 
       <div className="flow-track relative z-10 mt-16 md:mt-24">
         <div className="flow-stage">
-          <div className="relative mx-auto w-full max-w-7xl px-5">
-            {/* Pipe runs off both edges of the screen on wide layouts */}
-            <div aria-hidden="true" className={`absolute top-[19rem] right-full hidden w-[50vw] bg-lime lg:block ${pipe}`}>
-              <Sheen />
-            </div>
-            <div className="absolute top-[19rem] left-full hidden w-[50vw] lg:block">
-              <PipeSegment fillClassName="flow-exit" />
-            </div>
+          <div className="mx-auto w-full max-w-7xl px-5">
+            {/* Unpadded, so the edge pipes meet the stages exactly */}
+            <div className="relative">
+              {/* Pipe runs off both edges of the screen on wide layouts */}
+              <div aria-hidden="true" className={`absolute top-[19rem] right-full hidden w-[50vw] bg-lime lg:block ${pipe}`}>
+                <Sheen />
+              </div>
+              <div className="absolute top-[19rem] left-full z-10 hidden w-[50vw] lg:block">
+                <PipeSegment fillClassName="flow-exit" />
+              </div>
 
-            <ol className="grid gap-14 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-4 lg:gap-0">
-              {steps.map((step, i) => (
-                <li
-                  key={step.title}
-                  className="flow-step relative flex flex-col"
-                  style={{ "--i": i } as CSSProperties}
-                >
-                  <div className="relative h-[19rem]">
-                    {/* Clipped at the pipe so people climb out of it */}
-                    <div className="absolute inset-x-0 top-0 -bottom-1 flex items-end justify-center overflow-clip">
-                      <Image
-                        src={step.peep.src}
-                        alt=""
-                        width={step.peep.w}
-                        height={step.peep.h}
-                        className="flow-peep h-[13.5rem] w-auto"
-                      />
+              <ol className="grid gap-14 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-4 lg:gap-0">
+                {steps.map((step, i) => (
+                  <li
+                    key={step.title}
+                    className="flow-step relative flex flex-col"
+                    style={{ "--i": i } as CSSProperties}
+                  >
+                    <div className="relative h-[19rem]">
+                      {/* Clipped at the pipe so people climb out of it */}
+                      <div className="absolute inset-x-0 top-0 -bottom-1 flex items-end justify-center overflow-clip">
+                        <Image
+                          src={step.peep.src}
+                          alt=""
+                          width={step.peep.w}
+                          height={step.peep.h}
+                          className="flow-peep h-[13.5rem] w-auto"
+                        />
+                      </div>
+                      <div className="flow-bubble absolute top-0 right-0 z-10 w-max max-w-[12.5rem] rounded-2xl rounded-bl-sm border-[3px] border-ink bg-white px-4 py-2 font-hand text-[1.35rem] leading-tight text-ink shadow-[4px_4px_0_#0d0b1a] sm:right-auto sm:left-[46%]">
+                        {step.says}
+                      </div>
                     </div>
-                    <div className="flow-bubble absolute top-0 right-0 z-10 w-max max-w-[12.5rem] rounded-2xl rounded-bl-sm border-[3px] border-ink bg-white px-4 py-2 font-hand text-[1.35rem] leading-tight text-ink shadow-[4px_4px_0_#0d0b1a] sm:right-auto sm:left-[46%]">
-                      {step.says}
+
+                    <PipeSegment />
+
+                    <div className="flow-text pt-8 lg:pr-8 lg:pl-6">
+                      <h3 className="font-display text-3xl font-bold tracking-[-0.03em] md:text-4xl">
+                        {step.title}
+                      </h3>
+                      <p className="mt-3 leading-relaxed text-white/75">{step.text}</p>
+                      <ul className="mt-5 flex flex-wrap gap-2">
+                        {step.tags.map((tag) => (
+                          <li key={tag} className="rounded-full border border-white/25 px-3 py-1 text-sm text-white/85">
+                            {tag}
+                          </li>
+                        ))}
+                      </ul>
                     </div>
-                  </div>
-
-                  <PipeSegment />
-
-                  <div className="flow-text pt-8 lg:pr-8 lg:pl-6">
-                    <h3 className="font-display text-3xl font-bold tracking-[-0.03em] md:text-4xl">
-                      {step.title}
-                    </h3>
-                    <p className="mt-3 leading-relaxed text-white/75">{step.text}</p>
-                    <ul className="mt-5 flex flex-wrap gap-2">
-                      {step.tags.map((tag) => (
-                        <li key={tag} className="rounded-full border border-white/25 px-3 py-1 text-sm text-white/85">
-                          {tag}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </li>
-              ))}
-            </ol>
+                  </li>
+                ))}
+              </ol>
+            </div>
           </div>
         </div>
       </div>
