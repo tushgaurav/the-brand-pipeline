@@ -58,7 +58,7 @@ export function SiteFooter() {
       </div>
 
       <div aria-hidden="true" className="overflow-hidden px-3 pt-28">
-        <p className="headline relative mx-auto w-fit text-[18.5vw] leading-[0.8] whitespace-nowrap text-brand select-none">
+        <p className="headline relative mx-auto w-fit text-[15vw] leading-[0.8] whitespace-nowrap text-brand select-none">
           brand pipeline
           {/* Sized in em so they stay perched on the letters at any width */}
           <Image
@@ -66,7 +66,7 @@ export function SiteFooter() {
             alt=""
             width={346}
             height={510}
-            className="absolute right-[1.05em] bottom-[0.56em] w-[0.42em] invert"
+            className="absolute right-[1.56em] bottom-[0.49em] w-[0.48em] invert"
           />
         </p>
       </div>

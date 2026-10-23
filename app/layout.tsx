@@ -1,11 +1,10 @@
 import type { Metadata, Viewport } from "next";
-import { Bricolage_Grotesque, Caveat, Geist } from "next/font/google";
+import { Caveat, Geist, Instrument_Sans } from "next/font/google";
 import "./globals.css";
 
-const display = Bricolage_Grotesque({
-  variable: "--font-bricolage",
+const display = Instrument_Sans({
+  variable: "--font-instrument",
   subsets: ["latin"],
-  axes: ["opsz", "wdth"],
 });
 
 const sans = Geist({

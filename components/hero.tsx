@@ -19,11 +19,6 @@ export function Hero() {
       <Squiggle aria-hidden className="absolute top-[44%] left-[6%] hidden w-24 text-white/25 lg:block" />
 
       <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 flex-col items-center justify-center px-5 pt-32 pb-[56vw] text-center sm:pb-[46vw] md:pt-36 md:pb-[19vw]">
-        <p className="reveal mb-7 inline-flex items-center gap-2 rounded-full border border-white/25 px-4 py-1.5 text-sm font-medium text-white/85">
-          <span className="size-1.5 rounded-full bg-lime" />
-          Marketing · Design · Development
-        </p>
-
         <h1 className="headline text-[clamp(3.6rem,10.5vw,10.5rem)] text-lime">
           We get brands{" "}
           <span className="relative inline-block whitespace-nowrap">

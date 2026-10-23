@@ -10,7 +10,7 @@ export function Intro() {
           Hello, we&apos;re The Brand Pipeline
         </p>
 
-        <h2 className="reveal max-w-6xl font-display text-[clamp(2.1rem,5.2vw,4.9rem)] leading-[1.02] font-semibold tracking-[-0.035em] text-brand [font-stretch:92%]">
+        <h2 className="reveal max-w-6xl font-display text-[clamp(2.1rem,5.2vw,4.9rem)] leading-[1.04] font-semibold tracking-[-0.035em] text-brand">
           An end-to-end studio for brands that want to be{" "}
           <span className="sr-only">looked</span>
           <span aria-hidden="true" className="relative whitespace-nowrap">

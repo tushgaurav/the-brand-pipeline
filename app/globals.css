@@ -11,7 +11,7 @@
   --color-coral: #ff5678;
 
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-instrument), ui-sans-serif, system-ui, sans-serif;
   --font-hand: var(--font-caveat), "Comic Sans MS", cursive;
 
   --animate-marquee: marquee 40s linear infinite;
@@ -92,19 +92,18 @@
   }
 }
 
-/* Big, tight display type. Bricolage's width axis lets headlines run condensed. */
+/* Big, tightly tracked display type. */
 @utility headline {
   font-family: var(--font-display);
-  font-weight: 700;
-  font-stretch: 88%;
+  font-weight: 600;
   letter-spacing: -0.045em;
-  line-height: 0.92;
+  line-height: 0.95;
 }
 
 @utility ghost-text {
   font-family: var(--font-display);
-  font-weight: 700;
-  letter-spacing: -0.05em;
+  font-weight: 600;
+  letter-spacing: -0.04em;
   line-height: 1;
   color: transparent;
   -webkit-text-stroke: 1.5px color-mix(in oklab, var(--color-ink) 14%, transparent);
