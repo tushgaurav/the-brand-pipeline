@@ -1,4 +1,5 @@
 import { Contact } from "@/components/contact";
+import { Sparkle } from "@/components/doodles";
 import { Hero } from "@/components/hero";
 import { Intro } from "@/components/intro";
 import { Marquee } from "@/components/marquee";
@@ -17,7 +18,7 @@ export default function Home() {
         <Intro />
         <Marquee
           items={["marketing", "design", "development", "strategy", "growth"]}
-          separator="—"
+          separator={<Sparkle className="size-[0.32em] text-brand" />}
           className="ghost-text py-6 text-[clamp(5rem,14vw,13rem)]"
           trackClassName="animate-marquee-slow"
         />
