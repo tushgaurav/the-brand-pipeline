@@ -96,16 +96,13 @@ export function SiteHeader() {
           </button>
         </div>
         <nav aria-label="Mobile" className="mt-16 flex flex-col gap-2">
-          {links.map((link, i) => (
+          {links.map((link) => (
             <a
               key={link.href}
               href={link.href}
               onClick={() => setOpen(false)}
-              className="headline flex items-baseline gap-4 py-1 text-6xl text-lime"
+              className="headline py-1 text-6xl text-lime"
             >
-              <span className="font-sans text-sm font-medium tracking-normal text-white/60">
-                0{i + 1}
-              </span>
               {link.label}
             </a>
           ))}

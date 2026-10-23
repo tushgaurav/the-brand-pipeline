@@ -167,29 +167,45 @@
     view-timeline: --step block;
   }
 
+  /*
+   * Small screens: the lime in the riser keeps level with a line 16% up from
+   * the bottom of the screen, and each stage plays as its pipe passes it.
+   * A stage's pipe sits 20rem down the step, so `cover calc(Xvh + 20rem)` is
+   * "once the stage's pipe is X% of the way up the screen".
+   */
+  .flow-riser {
+    view-timeline: --riser block;
+  }
+
+  .flow-drop {
+    animation: flow-drop linear both;
+    animation-timeline: --riser;
+    animation-range: cover 16vh cover calc(100% - 84vh + 2rem);
+  }
+
   .flow-fill {
     animation: flow-fill linear both;
     animation-timeline: --step;
-    animation-range: cover 24% cover 40%;
+    animation-range: cover calc(16vh + 20rem) cover calc(30vh + 20rem);
   }
 
   .flow-peep {
     animation: peep-rise linear both;
     animation-timeline: --step;
-    animation-range: cover 28% cover 44%;
+    animation-range: cover calc(20vh + 20rem) cover calc(34vh + 20rem);
   }
 
   .flow-text {
     animation: reveal-up linear both;
     animation-timeline: --step;
-    animation-range: cover 32% cover 48%;
+    animation-range: cover calc(12vh + 20rem) cover calc(28vh + 20rem);
   }
 
   .flow-bubble {
     transform-origin: 0 100%;
     animation: bubble-pop linear both;
     animation-timeline: --step;
-    animation-range: cover 40% cover 50%;
+    animation-range: cover calc(30vh + 20rem) cover calc(38vh + 20rem);
   }
 
   @media (min-width: 64rem) and (min-height: 42rem) and (prefers-reduced-motion: no-preference) {
@@ -253,6 +269,12 @@
   }
 }
 
+@keyframes flow-drop {
+  from {
+    transform: translateY(-100%);
+  }
+}
+
 @keyframes peep-rise {
   from {
     transform: translateY(105%);
@@ -273,16 +295,28 @@
   }
 }
 
-/* Dashed sheen sliding along the process pipe, like something flowing through it. */
-.pipe-flow {
+/* Dashed sheen sliding along the process pipes, like something flowing through them. */
+.pipe-flow,
+.pipe-flow-down {
   border-radius: 9999px;
-  background: repeating-linear-gradient(90deg, rgb(255 255 255 / 0.65) 0 56px, transparent 56px 72px);
+  background: repeating-linear-gradient(var(--flow-dir, 90deg), rgb(255 255 255 / 0.65) 0 56px, transparent 56px 72px);
   animation: pipe-flow 2.4s linear infinite;
+}
+
+.pipe-flow-down {
+  --flow-dir: 180deg;
+  animation-name: pipe-flow-down;
 }
 
 @keyframes pipe-flow {
   to {
     background-position-x: 72px;
+  }
+}
+
+@keyframes pipe-flow-down {
+  to {
+    background-position-y: 72px;
   }
 }
 

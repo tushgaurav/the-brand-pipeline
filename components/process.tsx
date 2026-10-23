@@ -41,9 +41,9 @@ function Sheen() {
 }
 
 /* An empty stretch of pipe that fills with lime as you scroll (see .flow-fill). */
-function PipeSegment({ fillClassName = "flow-fill" }: { fillClassName?: string }) {
+function PipeSegment({ fillClassName = "flow-fill", className = "" }: { fillClassName?: string; className?: string }) {
   return (
-    <div aria-hidden="true" className={`relative bg-brand-deep ${pipe}`}>
+    <div aria-hidden="true" className={`relative bg-brand-deep ${pipe} ${className}`}>
       <div className="absolute inset-0 overflow-clip">
         {/* Overshoots the segment so its rounded front is clipped away once full */}
         <div className={`relative h-full w-[calc(100%+2rem)] rounded-r-full bg-lime ${fillClassName}`}>
@@ -52,6 +52,39 @@ function PipeSegment({ fillClassName = "flow-fill" }: { fillClassName?: string }
       </div>
       <div className={flange} />
     </div>
+  );
+}
+
+/*
+ * Below lg the stages stack, so a riser down the left feeds each one in turn.
+ * Each stage's riser runs from its junction to the next one, so the joins hide
+ * under the junction boxes (see .flow-drop).
+ */
+function Riser({ className }: { className: string }) {
+  return (
+    <div
+      aria-hidden="true"
+      className={`flow-riser absolute -bottom-[23.5rem] left-0 w-8 overflow-clip border-x-[3px] border-ink bg-brand-deep lg:hidden ${className}`}
+    >
+      <div className="flow-drop relative h-[calc(100%+2rem)] w-full rounded-b-full bg-lime">
+        <div className="pipe-flow-down absolute inset-y-0 left-1.5 w-1" />
+      </div>
+    </div>
+  );
+}
+
+/* Where the brand goes in, at the top of the riser. */
+function Funnel() {
+  return (
+    <svg
+      viewBox="0 0 64 44"
+      aria-hidden="true"
+      className="absolute bottom-full -left-4 w-16 overflow-visible lg:hidden"
+    >
+      <path d="M2 8H62L48 42.5H16Z" className="fill-lime stroke-ink" strokeWidth={3} strokeLinejoin="round" />
+      <ellipse cx={32} cy={8} rx={30} ry={6} className="fill-ink" />
+      <path d="M15 17 21 34" className="stroke-[#f4ffd0]" strokeWidth={4} strokeLinecap="round" />
+    </svg>
   );
 }
 
@@ -83,13 +116,16 @@ export function Process() {
                 <PipeSegment fillClassName="flow-exit" />
               </div>
 
-              <ol className="grid gap-14 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-4 lg:gap-0">
+              <ol className="grid gap-14 lg:grid-cols-4 lg:gap-0">
                 {steps.map((step, i) => (
                   <li
                     key={step.title}
-                    className="flow-step relative flex flex-col"
+                    className="flow-step relative flex flex-col pl-12 lg:pl-0"
                     style={{ "--i": i } as CSSProperties}
                   >
+                    {i === 0 && <Funnel />}
+                    {i < steps.length - 1 && <Riser className={i === 0 ? "top-0" : "top-[20rem]"} />}
+
                     <div className="relative h-[19rem]">
                       {/* Clipped at the pipe so people climb out of it */}
                       <div className="absolute inset-x-0 top-0 -bottom-1 flex items-end justify-center overflow-clip">
@@ -106,9 +142,14 @@ export function Process() {
                       </div>
                     </div>
 
-                    <PipeSegment />
+                    {/* Below lg it branches off the riser and runs off the right edge */}
+                    <PipeSegment className="-mr-5 -ml-4 lg:mx-0" />
+                    <div
+                      aria-hidden="true"
+                      className="absolute top-[18.5rem] -left-2 size-12 rounded-lg border-[3px] border-ink bg-lime lg:hidden"
+                    />
 
-                    <div className="flow-text pt-8 lg:pr-8 lg:pl-6">
+                    <div className="flow-text max-w-xl pt-8 lg:max-w-none lg:pr-8 lg:pl-6">
                       <h3 className="font-display text-3xl font-bold tracking-[-0.03em] md:text-4xl">
                         {step.title}
                       </h3>
