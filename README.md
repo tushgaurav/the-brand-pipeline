@@ -1,5 +1,7 @@
 # The Brand Pipeline
 
+![The Brand Pipeline](./screenshot.png)
+
 Marketing site for The Brand Pipeline, a studio that does strategy, marketing, design, and development. One page: hero, services, process, why us, and a contact form.
 
 ## Run
