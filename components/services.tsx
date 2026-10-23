@@ -5,7 +5,7 @@ const services = [
   {
     id: "marketing",
     name: "Marketing",
-    pitch: "Get in front of the right people — then give them a reason to stay.",
+    pitch: "Get in front of the right people, then give them a reason to stay.",
     items: [
       "Brand strategy & positioning",
       "Social media & content",
@@ -21,14 +21,13 @@ const services = [
       title: "text-lime",
       muted: "text-white/75",
       rule: "border-white/20",
-      chip: "bg-lime text-ink",
       cta: "bg-lime text-ink",
     },
   },
   {
     id: "design",
     name: "Design",
-    pitch: "Identities and interfaces people remember — and actually enjoy using.",
+    pitch: "Identities and interfaces people remember and actually enjoy using.",
     items: [
       "Brand identity & logo",
       "Visual systems & guidelines",
@@ -44,14 +43,13 @@ const services = [
       title: "text-brand",
       muted: "text-ink/70",
       rule: "border-ink/15",
-      chip: "bg-ink text-lime",
       cta: "bg-brand text-white",
     },
   },
   {
     id: "development",
     name: "Development",
-    pitch: "Fast, accessible websites and stores built to convert — and easy for you to run.",
+    pitch: "Fast, accessible websites and stores built to convert and easy for you to run.",
     items: [
       "Marketing websites",
       "E-commerce & Shopify",
@@ -67,7 +65,6 @@ const services = [
       title: "text-lime",
       muted: "text-paper/70",
       rule: "border-paper/15",
-      chip: "bg-lime text-ink",
       cta: "bg-lime text-ink",
     },
   },
@@ -98,17 +95,13 @@ export function Services() {
               style={{ top: `calc(6.5rem + ${i * 1.75}rem)` }}
             >
               <div className="flex flex-col">
-                <div className="flex items-center gap-3 text-sm font-semibold">
-                  <span className={`rounded-full px-3 py-1 ${s.theme.chip}`}>0{i + 1}</span>
-                  <span className={s.theme.muted}>What we do</span>
-                </div>
-                <h3 className={`headline mt-6 text-[clamp(3.2rem,7vw,6.5rem)] ${s.theme.title}`}>
+                <h3 className={`headline text-[clamp(3.2rem,7vw,6.5rem)] ${s.theme.title}`}>
                   {s.name}
                 </h3>
                 <p className="mt-5 max-w-md text-xl leading-snug font-medium md:text-2xl">
                   {s.pitch}
                 </p>
-                <ul className="mt-8 grid gap-x-8 sm:grid-cols-2">
+                <ul className="mt-8 mb-10 grid gap-x-8 sm:grid-cols-2">
                   {s.items.map((item) => (
                     <li
                       key={item}
@@ -121,9 +114,9 @@ export function Services() {
                 </ul>
                 <a
                   href="#contact"
-                  className={`group mt-8 inline-flex w-fit items-center gap-2 rounded-full px-6 py-3.5 font-semibold transition-transform hover:-rotate-2 lg:mt-auto ${s.theme.cta}`}
+                  className={`group mt-auto inline-flex w-fit items-center gap-2 rounded-full px-6 py-3.5 font-semibold transition-transform hover:-rotate-2 ${s.theme.cta}`}
                 >
-                  Talk {s.name.toLowerCase()}
+                  Talk {s.name}
                   <Arrow className="size-5 transition-transform group-hover:translate-x-1" />
                 </a>
               </div>
