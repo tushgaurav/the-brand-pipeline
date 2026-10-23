@@ -27,6 +27,9 @@ export const metadata: Metadata = {
       "We get brands noticed. Marketing, design and development — end to end.",
     type: "website",
   },
+  twitter: {
+    card: "summary_large_image",
+  },
 };
 
 export const viewport: Viewport = {
