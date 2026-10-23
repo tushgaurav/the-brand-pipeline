@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Sparkle, Squiggle } from "./doodles";
+import { Highlight } from "./doodles";
 
 const reasons = [
   {
@@ -33,15 +33,11 @@ export function WhyUs() {
     <section id="why" className="px-5 py-24 md:py-36">
       <div className="mx-auto max-w-7xl">
         <div className="mx-auto max-w-3xl text-center">
-          <p className="reveal mb-6 inline-flex items-center gap-2 text-sm font-semibold tracking-wide text-ink/60 uppercase">
-            <Sparkle className="size-4 text-brand" />
-            Why us
-          </p>
           <h2 className="reveal headline text-[clamp(2.8rem,6.5vw,6rem)] text-ink">
             Why brands plug into{" "}
-            <span className="relative inline-block text-brand">
+            <span className="relative isolate inline-block text-brand">
               the pipeline
-              <Squiggle className="absolute -bottom-[0.32em] left-0 w-full text-coral" strokeWidth={3} />
+              <Highlight className="absolute bottom-[0.02em] -left-[0.12em] -z-10 h-[0.5em] w-[calc(100%+0.24em)] -rotate-1 text-lime" />
             </span>
           </h2>
         </div>

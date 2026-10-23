@@ -50,6 +50,15 @@ export function Squiggle(props: DoodleProps) {
   );
 }
 
+/* A highlighter swipe with ragged ends; stretches to whatever it sits behind. */
+export function Highlight(props: DoodleProps) {
+  return (
+    <Doodle viewBox="0 0 300 40" preserveAspectRatio="none" fill="currentColor" stroke="none" {...props}>
+      <path d="M4 9C70 4 150 8 230 5c30-1 55 0 67 3l-5 10 7 9c-59 6-139 3-209 7-40 2-70 0-87-1l5-12Z" />
+    </Doodle>
+  );
+}
+
 export function Underline(props: DoodleProps) {
   return (
     <Doodle viewBox="0 0 300 32" preserveAspectRatio="none" {...props}>
