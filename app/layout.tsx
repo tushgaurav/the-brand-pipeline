@@ -18,7 +18,7 @@ const hand = Caveat({
 });
 
 export const metadata: Metadata = {
-  title: "The Brand Pipeline — Marketing, Design & Development Studio",
+  title: "The Brand Pipeline | Marketing, Design & Development Studio",
   description:
     "The Brand Pipeline helps brands get noticed. Strategy, marketing, design and development — end to end, under one roof.",
   openGraph: {
