@@ -156,6 +156,123 @@
   }
 }
 
+/*
+ * "How the pipeline flows": each stage fills its stretch of pipe, then its
+ * person climbs out and starts talking. Small screens play each stage as it
+ * scrolls past; large screens pin the pipeline and play the stages in turn.
+ * Without scroll timelines (or with reduced motion) everything just shows.
+ */
+@supports (animation-timeline: view()) {
+  .flow-step {
+    view-timeline: --step block;
+  }
+
+  .flow-fill {
+    animation: flow-fill linear both;
+    animation-timeline: --step;
+    animation-range: cover 24% cover 40%;
+  }
+
+  .flow-peep {
+    animation: peep-rise linear both;
+    animation-timeline: --step;
+    animation-range: cover 28% cover 44%;
+  }
+
+  .flow-text {
+    animation: reveal-up linear both;
+    animation-timeline: --step;
+    animation-range: cover 32% cover 48%;
+  }
+
+  .flow-bubble {
+    transform-origin: 0 100%;
+    animation: bubble-pop linear both;
+    animation-timeline: --step;
+    animation-range: cover 40% cover 50%;
+  }
+
+  @media (min-width: 64rem) and (min-height: 42rem) and (prefers-reduced-motion: no-preference) {
+    /* The scroll distance while pinned is this height minus one screen. */
+    .flow-track {
+      view-timeline: --flow block;
+      height: 340vh;
+      margin-top: 0;
+    }
+
+    .flow-stage {
+      position: sticky;
+      top: 0;
+      display: flex;
+      height: 100vh;
+      flex-direction: column;
+      justify-content: center;
+      padding-top: 5rem; /* clears the fixed header */
+    }
+
+    /*
+     * Stage i owns 21% of the pinned scroll. The first starts a little before
+     * the pin so the flow is already moving when the pipeline locks in place.
+     */
+    .flow-fill,
+    .flow-peep,
+    .flow-text,
+    .flow-bubble {
+      --at: calc(-6% + var(--i) * 21%);
+      animation-timeline: --flow;
+    }
+
+    .flow-fill {
+      animation-range: contain var(--at) contain calc(var(--at) + 21%);
+    }
+
+    .flow-peep {
+      animation-range: contain calc(var(--at) + 4%) contain calc(var(--at) + 15%);
+    }
+
+    .flow-text {
+      animation-range: contain calc(var(--at) + 8%) contain calc(var(--at) + 17%);
+    }
+
+    .flow-bubble {
+      animation-range: contain calc(var(--at) + 13%) contain calc(var(--at) + 19%);
+    }
+
+    /* ...and out the other end. */
+    .flow-exit {
+      animation: flow-fill linear both;
+      animation-timeline: --flow;
+      animation-range: contain 78% contain 88%;
+    }
+  }
+}
+
+@keyframes flow-fill {
+  from {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes peep-rise {
+  from {
+    transform: translateY(105%);
+  }
+  75% {
+    transform: translateY(-4%);
+  }
+}
+
+@keyframes bubble-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.3) rotate(-10deg);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.06) rotate(2deg);
+  }
+}
+
 /* Dashed sheen sliding along the process pipe, like something flowing through it. */
 .pipe-flow {
   border-radius: 9999px;
